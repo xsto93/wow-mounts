@@ -1,6 +1,8 @@
 import React from 'react';
 
-const Dashboard = () => {
+const Dashboard = (props : any) => {
+
+    console.log('PROPIEDADES', props)
   return (
       <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
           <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -16,6 +18,14 @@ const Dashboard = () => {
                   </button>
               </div>
           </div>
+
+          <ul>
+              {
+              props.data ?
+                props.data.mounts.map( (element: any) => (<li>{JSON.stringify(element.data)}</li>)) 
+                : null
+              }
+          </ul>
       </main>
   )
 }

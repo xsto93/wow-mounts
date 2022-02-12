@@ -1,28 +1,31 @@
-import React, {useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import logo from './logo.svg';
-import { app } from './firebase/firebase';
 // import './App.css';
 import Header from './Components/Layout/Header/Header';
 import Content from './Components/Layout/Content/Content';
 import SideBar from './Components/Layout/SideBar/SideBar';
 import Dashboard from './Components/Layout/Dashboard/Dashboard';
+import { FirebaseContext } from './firebase/FirebaseProvider';
+import { useSelector } from 'react-redux';
+
+
 
 function App() {
 
-  // useEffect(() => {
-  //   let ref = db.ref("/");
-  //   ref.on("value", snapshot => {
-  //     console.log(snapshot.val)
-  //   });
-
-  // },[])
+  const { app, api } : any = useContext(FirebaseContext);
+  const data = useSelector(state => state);
+  console.log(data);
+  
+  useEffect(() => {
+    api.getMounts();
+  } , [])
 
   return (
     <div>
         <Header />
         <Content>
           <SideBar />
-          <Dashboard />
+          <Dashboard data={data}/>
         </Content>
     </div>
   );

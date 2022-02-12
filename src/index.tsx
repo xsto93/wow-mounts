@@ -5,10 +5,17 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import FirebaseProvider from './firebase/FirebaseProvider';
+import { Provider } from 'react-redux';
+import store from './state/store';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+    <FirebaseProvider>
+      <App />
+    </FirebaseProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
